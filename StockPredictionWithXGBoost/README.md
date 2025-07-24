@@ -36,4 +36,4 @@ outputs/                # (Optional) Figures or saved models
 
 ## 👤 Author
 
-Your Name | [Your GitHub](https://github.com/yourusername)
+Jinghan He
