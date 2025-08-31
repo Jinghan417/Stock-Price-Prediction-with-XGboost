@@ -1,39 +1,32 @@
-# Stock Price Prediction with XGBoost 📈
+# Stock Price Prediction with XGBoost
 
-This project implements a machine learning pipeline to predict future stock prices using XGBoost regression. It includes feature engineering from technical indicators and time series cross-validation.
+## Overview
+This project explores short-term stock return prediction using machine learning techniques. The goal is to evaluate whether engineered time-series features can provide predictive power for equity returns and be applied in a simple trading strategy.
 
-## 🔍 Features
+## Methodology
+- **Data**: Historical stock price and volume data  
+- **Feature Engineering (Alpha Factors)**:  
+  - Lagged returns  
+  - Rolling volatility measures  
+  - Momentum indicators (e.g., moving averages, Bollinger Bands)  
+- **Model**: Gradient Boosted Regression Trees (XGBoost)  
+  - Trained using expanding-window cross-validation to avoid look-ahead bias  
+  - Objective: predict next-day stock returns  
 
-- Technical indicator generation with `ta`
-- Time series cross-validation with `TimeSeriesSplit`
-- XGBoost regression model
-- Evaluation using RMSE
-- Cumulative return backtest
+## Trading Strategy and Backtesting
+- Model outputs were converted into trading signals:  
+  - Positive predicted return → long position  
+  - Negative predicted return → short position  
+- Backtested on historical data with evaluation metrics:  
+  - **Cumulative return**  
+  - **Maximum drawdown**  
+  - **Sharpe ratio**  
 
-## 🛠️ Installation
+## Results
+- The model demonstrated predictive ability relative to naive benchmarks (e.g., buy-and-hold, simple moving average crossover).  
+- Backtest results showed that engineered features provided meaningful signals for short-term return forecasting, with improved risk-adjusted performance compared to baseline strategies.  
 
-```bash
-pip install -r requirements.txt
-```
-
-## 🧪 Usage
-
-All code is in `notebooks/StockPredictionwithXGboost_clean.ipynb`. You can run it cell-by-cell.
-
-## 📁 Directory Structure
-
-```
-notebooks/              # Contains the Jupyter Notebook
-data/                   # (Optional) Raw or processed stock data
-outputs/                # (Optional) Figures or saved models
-```
-
-## 📌 To-Do
-
-- Add LSTM or other model comparisons
-- Use more advanced factor engineering (e.g. industry-neutral factors)
-- Add more evaluation metrics (Sharpe Ratio, Max Drawdown)
-
-## 👤 Author
-
-Jinghan He
+## Future Work
+- Incorporate transaction costs and slippage into the backtest framework  
+- Extend feature set with macroeconomic and alternative data  
+- Compare against traditional statistical methods (ARIMA, GARCH)  
